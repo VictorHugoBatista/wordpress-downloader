@@ -17,6 +17,9 @@ if [ $# -lt 1 ]; then
 	echo ''                                           
 	echo 'Parâmetros esperados:'
 	echo ' - título do projeto'
+	echo
+	echo "Exemplo de comando completo: ${0##*/} projeto-teste"
+	echo 'Repositório do projeto: https://github.com/VictorHugoBatista/wordpress-downloader'
 	exit 0
 fi
 
