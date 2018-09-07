@@ -32,21 +32,21 @@ fi
 
 # Gera a estrutura de arquivos
 mkdir $project_title
+cd $project_title
 
 # Baixa a instalação vazia do wordpress automaticamente
-cd public
 wget https://wordpress.org/latest.tar.gz
 tar -xzf latest.tar.gz
 mv wordpress/* .
 rm -r wordpress
 rm latest.tar.gz
-cd ..
+
+chmod -R 755
 
 # Exibe estrutura de arquivos
 echo 'Estrutura criada com sucesso:'
-ls -la $project_title
-echo ''
+ls -la
 
-chmod -R 755
+cd -
 
 exit 0
