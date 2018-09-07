@@ -1,5 +1,5 @@
 bin_path='/usr/bin'
-script_name='wordpress-installer'
+script_name='wp-download'
 script_file="$bin_path/$script_name"
 
 if [ -e $script_file ]; then

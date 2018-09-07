@@ -21,7 +21,7 @@ if [ $# -lt 1 ]; then
 fi
 
 project_title=$1
-echo "O wordpress será baixado no diretório $project_title"
+echo "O wordpress será baixado no diretório \"$project_title\""
 echo ''
 
 # Pede confirmação sobre a estrutura à ser criada
