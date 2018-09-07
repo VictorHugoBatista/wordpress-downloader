@@ -1,0 +1,1 @@
+echo 'wordpress-installer'
