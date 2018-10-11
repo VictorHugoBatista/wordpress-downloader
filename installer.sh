@@ -1,3 +1,4 @@
+#!/bin/bash
 bin_path='/usr/bin'
 script_name='wp-download'
 script_file="$bin_path/$script_name"
@@ -8,7 +9,6 @@ BLUE="\e[94m"
 RESET="\e[0m"
 
 if [ -e $script_file ]; then
-    echo 'Operações disponíveis:'
     echo -e "${GREEN}1 - Atualizar$RESET"
     echo -e "${RED}2 - Remover$RESET"
     echo
