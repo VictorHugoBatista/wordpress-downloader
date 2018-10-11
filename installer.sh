@@ -2,10 +2,15 @@ bin_path='/usr/bin'
 script_name='wp-download'
 script_file="$bin_path/$script_name"
 
+RED="\e[91m"
+GREEN="\e[92m"
+BLUE="\e[94m"
+RESET="\e[0m"
+
 if [ -e $script_file ]; then
     echo 'Operações disponíveis:'
-    echo '1 - Atualizar'
-    echo '2 - Remover'
+    echo -e "${GREEN}1 - Atualizar$RESET"
+    echo -e "${RED}2 - Remover$RESET"
     echo
 
     # Pede confirmação sobre a estrutura à ser criada
@@ -16,24 +21,24 @@ if [ -e $script_file ]; then
     done
 
     if [ "$opcao" = '1' ]; then
-        echo "O arquivo $script_name será atualizado no diretório $bin_path"
+        echo -e "O arquivo ${BLUE}${script_name}${RESET} será atualizado no diretório $bin_path"
     else
-        echo "O arquivo $script_name será removido do diretório $bin_path"
+        echo -e "O arquivo ${BLUE}${script_name}${RESET} será removido do diretório $bin_path"
     fi
 else
-    echo "O arquivo $script_name será adicionado ao diretório $bin_path"
+    echo -e "O arquivo ${BLUE}${script_name}${RESET} será adicionado ao diretório $bin_path"
 fi
 echo 'Digite "s" para prosseguir ou "n" para cancelar:'
 
 # Pede confirmação sobre a estrutura à ser criada
 continue_process=''
 while [ "$continue_process" = '' ] || [ "$continue_process" != 's' ] && [ "$continue_process" != 'n' ]; do
-    echo 'Pressione "s" ou "n" para prosseguir:'
+    echo -e "Digite ${GREEN}s$RESET para prosseguir ou ${RED}n$RESET para cancelar: \c"
     read continue_process
 done
 # Para a execução caso a opção selecionada foi 'n'
 if [ "$continue_process" = 'n' ]; then
-    echo 'A operação foi cancelada!'
+    echo -e "${RED}A operação foi cancelada!${RESET}"
     exit 0
 fi
 
@@ -41,13 +46,15 @@ if [ -e $script_file ]; then
     if [ "$opcao" = '1' ]; then
         sudo cp -rf $script_name.sh $script_file
         sudo chmod +x $script_file
-        echo "Comando $script_name atualizado com sucesso!"
+        echo -e "Comando ${BLUE}${script_name}${RESET} atualizado com sucesso!"
     else
         sudo rm $script_file
-        echo "Comando $script_name desinstalado com sucesso!"
+        echo -e "Comando ${BLUE}${script_name}${RESET} desinstalado com sucesso!"
     fi
 else
     sudo cp $script_name.sh $script_file
     sudo chmod +x $script_file
-    echo "Comando $script_name instalado com sucesso!"
+    echo -e "Comando ${BLUE}${script_name}${RESET} instalado com sucesso!"
 fi
+
+exit 0
