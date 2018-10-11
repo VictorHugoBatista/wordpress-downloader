@@ -1,4 +1,12 @@
+#!/bin/bash
+
+RED="\e[91m"
+GREEN="\e[92m"
+BLUE="\e[94m"
+RESET="\e[0m"
+
 if [ $# -lt 1 ]; then
+    echo -e "$BLUE"
     echo '                                      d8b'
     echo '                                      88P'
     echo '                                     d88'
@@ -14,7 +22,7 @@ if [ $# -lt 1 ]; then
     echo '  / _` |/ _ \ \ /\ / / ._ \| |/ _ \ / _` |/ _` |/ _ \ .__|'
     echo ' | (_| | (_) \ V  V /| | | | | (_) | (_| | (_| |  __/ |'
     echo '  \__,_|\___/ \_/\_/ |_| |_|_|\___/ \__,_|\__,_|\___|_|'
-    echo ''                                           
+    echo -e "$RESET"
     echo 'Parâmetros esperados:'
     echo ' - título do projeto'
     echo
@@ -24,19 +32,20 @@ if [ $# -lt 1 ]; then
 fi
 
 project_title=$1
+echo -e "$BLUE"
 echo "O wordpress será baixado no diretório \"$project_title\""
-echo ''
+echo -e "$RESET"
 
 # Pede confirmação sobre a estrutura à ser criada
 continue_process=''
 while [ "$continue_process" = '' ] || [ "$continue_process" != 's' ] && [ "$continue_process" != 'n' ]; do
-    echo 'Pressione "s" ou "n" para prosseguir:'
+    echo -e "Digite ${GREEN}s$RESET para prosseguir ou ${RED}n$RESET para cancelar: \c"
     read continue_process
 done
 
 # Para a execução caso a opção selecionada foi 'n'
 if [ "$continue_process" = 'n' ]; then
-    echo 'A operação foi cancelada!'
+    echo -e "${RED}A operação foi cancelada!${RESET}"
     exit 0
 fi
 
@@ -44,7 +53,7 @@ fi
 # sugerido para ser o diretório raíz do site. Se
 # sim, para o programa com status 1.
 if [ -e $project_title ]; then
-    echo "Um arquivo/diretório de nome $project_title já existe!"
+    echo -e "${RED}Um arquivo/diretório de nome $project_title já existe!${RESET}"
     exit 1
 fi
 
@@ -62,9 +71,11 @@ rm latest.tar.gz
 chmod -R 755
 
 # Exibe estrutura de arquivos
+echo -e "$GREEN"
 echo 'Estrutura criada com sucesso:'
 ls -la
+echo -e "$RESET"
 
-cd -
+cd - > /dev/null
 
 exit 0
